@@ -1,6 +1,7 @@
 
 import Layout from './Layout'
 import Lazy from './Lazy'
+import NotFound from './404'
 
 const layout = {
   route: {
@@ -29,16 +30,17 @@ export default [
   {
     path: "/",
     element: <Layout layout={layout} />,
+    errorElement: <NotFound />,
     children: [
       {
         name: 'Home',
         path: '/',
-        element: <Lazy component='Home' />,
+        element: <Lazy component='pages/Home' />,
       },
       {
         name: 'About',
         path: '/about',
-        element: <Lazy component='About' />,
+        element: <Lazy component='pages/About' />,
       },
       {
         name: 'Test',
