@@ -52,12 +52,12 @@ const islogin = async () => {
 export default [
   {
     path: "/login",
-    element: <Lazy component='pages/Login' />,
+    element: <Lazy component='pages/Login' auth={auth} />,
     loader: islogin,
   },
   {
     path: "/",
-    element: <Layout layout={layout} auth={auth}/>,
+    element: <Layout layout={layout} auth={auth} />,
     errorElement: <NotFound />,
     loader: login,
     children: [

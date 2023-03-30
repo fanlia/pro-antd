@@ -27,9 +27,7 @@ const iconStyles = {
   cursor: 'pointer',
 }
 
-import { auth } from '../services/auth'
-
-export default () => {
+export default ({ auth }) => {
 
   const [loginType, setLoginType] = useState('account')
   const location = useLocation()
