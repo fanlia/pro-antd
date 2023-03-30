@@ -4,6 +4,7 @@ import { Outlet, useLocation, useNavigate, Link } from 'react-router-dom'
 
 import {
   LogoutOutlined,
+  UserOutlined,
 } from '@ant-design/icons'
 
 import { Dropdown } from 'antd'
@@ -38,6 +39,7 @@ export default function Layout (props) {
       )}
       avatarProps = { user && {
         src: user.avatar,
+        icon: !user.avatar && <UserOutlined />,
         title: user.username,
         size: 'small',
         render: (props, dom) => (

@@ -147,6 +147,9 @@ export default () => {
               <WeiboCircleOutlined style={iconStyles} />
             </Space>
           }
+          initialValues={{
+            autoLogin: true,
+          }}
           onFinish={handleLogin}
         >
           <Tabs

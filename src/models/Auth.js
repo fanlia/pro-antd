@@ -13,11 +13,11 @@ export class Auth {
     this.access_token = null
   }
 
-  async me (access_token) {
+  async me (access_token, autoLogin) {
     if (!access_token) return null
-    this.user = await this.options.fetchUser(this.access_token)
+    this.user = await this.options.fetchUser(access_token)
     this.access_token = access_token
-    AccessToken.set(access_token)
+    if (autoLogin) AccessToken.set(access_token)
     return this.user
   }
 
@@ -25,9 +25,9 @@ export class Auth {
     return this.user
   }
 
-  async login (signData) {
+  async login (signData = {}) {
     const access_token = await this.options.signin(signData)
-    return this.me(access_token)
+    return this.me(access_token, signData.autoLogin)
   }
 
   async logout () {
@@ -37,7 +37,7 @@ export class Auth {
   }
 
   async checkin () {
-    const access_token = AccessToken.get()
+    const access_token = this.access_token || AccessToken.get()
     return this.me(access_token)
   }
 }
