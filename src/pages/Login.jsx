@@ -35,9 +35,13 @@ export default ({ auth }) => {
 
   const handleLogin = async (data) => {
     const signData = { ...data, loginType }
-    await auth.login(signData)
-    const to = new URLSearchParams(location.search).get('redirect') || '/'
-    navigate(to)
+    try {
+      await auth.login(signData)
+      const to = new URLSearchParams(location.search).get('redirect') || '/'
+      navigate(to)
+    } catch (e) {
+      message.warning('登录失败，请重新输入！')
+    }
   }
 
   const items = [

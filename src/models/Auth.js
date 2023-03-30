@@ -15,10 +15,15 @@ export class Auth {
 
   async me (access_token, autoLogin) {
     if (!access_token) return null
-    this.user = await this.options.fetchUser(access_token)
-    this.access_token = access_token
-    if (autoLogin) AccessToken.set(access_token)
-    return this.user
+    try {
+      this.user = await this.options.fetchUser(access_token)
+      this.access_token = access_token
+      if (autoLogin) AccessToken.set(access_token)
+      return this.user
+    } catch (e) {
+      // ignore error
+      return null
+    }
   }
 
   getUser () {
