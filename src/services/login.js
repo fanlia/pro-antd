@@ -16,7 +16,6 @@ const login = async ({ request }) => {
 
 const islogin = async () => {
   const user = await auth.checkin()
-  console.log({user})
   if (user) {
     return redirect('/')
   }
