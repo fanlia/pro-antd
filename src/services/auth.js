@@ -1,7 +1,5 @@
 
-import { Auth } from '../models/Auth'
-
-const fetchUser = async (access_token) => {
+export const fetchUser = async (access_token) => {
 
   return {
     username: '七妮妮',
@@ -9,11 +7,8 @@ const fetchUser = async (access_token) => {
   }
 }
 
-const signin = async (signData) => {
+export const signin = async (signData) => {
+
   return 'access_token sample'
 }
 
-export const auth = new Auth({
-  fetchUser,
-  signin,
-})

@@ -1,9 +1,14 @@
 
 import { redirect } from 'react-router-dom'
+import { Auth } from '../models/Auth'
+import { signin, fetchUser } from './auth'
 
-import { auth } from './auth'
+export const auth = new Auth({
+  fetchUser,
+  signin,
+})
 
-const login = async ({ request }) => {
+export const login = async ({ request }) => {
   const user = await auth.checkin()
   if (!user) {
     const url = new URL(request.url)
@@ -14,17 +19,10 @@ const login = async ({ request }) => {
   return null
 }
 
-const islogin = async () => {
+export const islogin = async () => {
   const user = await auth.checkin()
   if (user) {
     return redirect('/')
   }
   return null
 }
-
-export {
-  auth,
-  login,
-  islogin,
-}
-
