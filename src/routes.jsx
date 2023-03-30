@@ -3,8 +3,7 @@ import Layout from './Layout'
 import Lazy from './Lazy'
 import NotFound from './404'
 
-import { redirect } from 'react-router-dom'
-import { auth } from './services/auth'
+import { auth, islogin, login } from './services/login'
 
 const layout = {
   layout: 'mix',
@@ -28,25 +27,6 @@ const layout = {
       },
     ],
   },
-}
-
-const login = async ({ request }) => {
-  const user = await auth.checkin()
-  if (!user) {
-    const url = new URL(request.url)
-    const to = encodeURIComponent(url.pathname + url.search)
-    return redirect('/login?redirect=' + to)
-  }
-
-  return null
-}
-
-const islogin = async () => {
-  const user = await auth.checkin()
-  if (user) {
-    return redirect('/')
-  }
-  return null
 }
 
 export default [
