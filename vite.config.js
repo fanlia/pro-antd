@@ -8,4 +8,7 @@ export default defineConfig({
     react(),
     dynamicImport(),
   ],
+  build: {
+    chunkSizeWarningLimit: 2000,
+  },
 })
