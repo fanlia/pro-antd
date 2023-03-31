@@ -42,7 +42,10 @@ export class Auth {
   }
 
   async checkin () {
-    const access_token = this.access_token || AccessToken.get()
+    if (this.access_token && this.user) {
+      return this.user
+    }
+    const access_token = AccessToken.get()
     return this.me(access_token)
   }
 }
