@@ -17,7 +17,7 @@ import {
 
 import { message, Space, Tabs } from 'antd'
 import { useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, Navigate } from 'react-router-dom'
 import Loading from '../Loading'
 
 const iconStyles = {
