@@ -4,20 +4,23 @@ import {
   RouterProvider,
 } from "react-router-dom"
 
-import routes from './routes'
-
 import { ConfigProvider } from 'antd'
-import dayjs from 'dayjs'
-import 'dayjs/locale/zh-cn'
-import zhCN from 'antd/locale/zh_CN'
-
-dayjs.locale('zh-cn')
-
-const router = createBrowserRouter(routes)
+import { useInitialValues } from './services/initialValues'
+import initializer from './initializer'
+import Loading from './Loading'
 
 export default () => {
+  const { status, initialValues } = useInitialValues(initializer)
+
+  if (status === 'loading') return <Loading />
+  if (status === 'error') return <Loading />
+
+  const { locale, routes } = initialValues
+
+  const router = createBrowserRouter(routes)
+
   return (
-    <ConfigProvider locale={zhCN}>
+    <ConfigProvider locale={locale}>
       <RouterProvider router={router} />
     </ConfigProvider>
   )
