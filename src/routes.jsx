@@ -3,8 +3,6 @@ import Layout from './Layout'
 import Lazy from './Lazy'
 import NotFound from './404'
 
-import { auth } from './services/login'
-
 const layout = {
   layout: 'mix',
   route: {
@@ -32,11 +30,11 @@ const layout = {
 export default [
   {
     path: "/login",
-    element: <Lazy component='pages/Login' auth={auth} />,
+    element: <Lazy component='pages/Login' />,
   },
   {
     path: "/",
-    element: <Layout layout={layout} auth={auth} />,
+    element: <Layout layout={layout} />,
     errorElement: <NotFound />,
     children: [
       {
