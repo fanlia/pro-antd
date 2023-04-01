@@ -4,11 +4,8 @@ import Lazy from './Lazy'
 import NotFound from './404'
 
 import { loadLocale } from './services/lang'
-import { auth } from './services/login'
 
 export default async () => {
-
-  await auth.checkin()
 
   const lang = 'zh-cn'
 
