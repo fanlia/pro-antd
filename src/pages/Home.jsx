@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Button } from 'antd'
+import { Button, DatePicker } from 'antd'
 
 export default () => {
   const [count, setCount] = useState(0)
@@ -9,6 +9,7 @@ export default () => {
       <Button onClick={() => setCount((count) => count + 1)}>
         count is {count}
       </Button>
+      <DatePicker />
     </div>
   )
 }
