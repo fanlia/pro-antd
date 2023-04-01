@@ -19,7 +19,11 @@ export default function Layout (props) {
   const auth = useAuth()
 
   if (auth.status === 'checking') return <Loading />
-  if (auth.status === 'unchecked') return <Navigate to='/login' />
+  if (auth.status === 'unchecked') {
+    const from = encodeURIComponent(location.pathname + location.search)
+    const to = `/login?redirect=${from}`
+    return <Navigate to={to} />
+  }
 
   const {
     layout = {},
