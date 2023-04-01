@@ -2,12 +2,13 @@
 import Layout from './Layout'
 import Lazy from './Lazy'
 import NotFound from './404'
+import Lang from './Lang'
 
-import { loadLocale } from './services/lang'
+import { loadLocale, getLang } from './services/lang'
 
 export default async () => {
 
-  const lang = 'zh-cn'
+  const lang = getLang()
 
   const locale = loadLocale(lang)
 
@@ -33,6 +34,11 @@ export default async () => {
         },
       ],
     },
+    actionsRender: (props) => {
+      return [
+        <Lang lang={lang} />,
+      ]
+    }
   }
 
   const routes = [

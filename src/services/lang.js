@@ -16,3 +16,22 @@ export const loadLocale = (lang) => {
   dayjs.locale(lang)
   return langMap[lang]
 }
+
+export const switchLang = (lang) => {
+  const current = lang === 'en' ? 'CN' : 'EN'
+  const next = lang === 'en' ? 'zh-cn' : 'en'
+
+  return {
+    current,
+    next,
+  }
+}
+
+export const saveLang = (lang) => {
+  localStorage.lang = lang
+}
+
+export const getLang = () => {
+  const lang = localStorage.lang || 'zh-cn'
+  return langMap[lang] ? lang : 'zh-cn'
+}
