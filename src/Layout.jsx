@@ -1,6 +1,6 @@
 
 import { ProLayout, PageContainer } from '@ant-design/pro-components'
-import { Outlet, useLocation, useNavigate, Link } from 'react-router-dom'
+import { Outlet, useLocation, useNavigate, Link, Navigate } from 'react-router-dom'
 
 import {
   LogoutOutlined,
@@ -9,28 +9,34 @@ import {
 
 import { Dropdown } from 'antd'
 
+import Loading from './Loading'
+import { useAuth } from './services/login'
+
 export default function Layout (props) {
 
   const location = useLocation()
   const navigate = useNavigate()
+  const auth = useAuth()
+
+  if (auth.status === 'checking') return <Loading />
+  if (auth.status === 'unchecked') return <Navigate to='/login' />
 
   const {
     layout = {},
     container = {},
-    auth,
   } = props
 
-  const user = auth.getUser()
+  const user = auth.auth.getUser()
 
   const handleAvatar = async ({ key }) => {
     if (key === 'logout') {
-      await auth.logout()
+      await auth.auth.logout()
       navigate('/login')
     }
   }
 
   return (
-    <ProLayout
+    auth.status === 'checked' && <ProLayout
       location = { location }
       menuItemRender = {(item, dom) => (
         item.path.startsWith('http')

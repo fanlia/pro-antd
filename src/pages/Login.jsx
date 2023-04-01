@@ -18,6 +18,7 @@ import {
 import { message, Space, Tabs } from 'antd'
 import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
+import Loading from '../Loading'
 
 const iconStyles = {
   marginInlineStart: '16px',
@@ -27,16 +28,22 @@ const iconStyles = {
   cursor: 'pointer',
 }
 
-export default ({ auth }) => {
+import { useAuth } from '../services/login'
+
+export default () => {
 
   const [loginType, setLoginType] = useState('account')
   const location = useLocation()
   const navigate = useNavigate()
+  const auth = useAuth()
+
+  if (auth.status === 'checking') return <Loading />
+  if (auth.status === 'checked') return <Navigate to='/' />
 
   const handleLogin = async (data) => {
     const signData = { ...data, loginType }
     try {
-      await auth.login(signData)
+      await auth.auth.login(signData)
       const to = new URLSearchParams(location.search).get('redirect') || '/'
       navigate(to)
     } catch (e) {
@@ -135,7 +142,7 @@ export default ({ auth }) => {
     },
   ]
   return (
-    <ProConfigProvider hashed={false}>
+    auth.status === 'unchecked' && <ProConfigProvider hashed={false}>
       <div style={{ backgroundColor: 'white' }}>
         <LoginForm
           logo="https://github.githubassets.com/images/modules/logos_page/Octocat.png"

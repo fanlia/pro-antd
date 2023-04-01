@@ -1,12 +1,12 @@
 
 import { Suspense, lazy } from 'react'
-import { Spin } from 'antd'
+import Loading from './Loading'
 
 export default ({ component, ...props }) => {
   const Component = lazy(() => import(`./${component}.jsx`))
 
   return (
-    <Suspense fallback={<Spin />} >
+    <Suspense fallback={<Loading />} >
       <Component { ...props } />
     </Suspense>
   )
