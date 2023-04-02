@@ -1,7 +1,7 @@
 
 import Layout from './Layout'
 import Lazy from './Lazy'
-import NotFound from './404'
+import ErrorBoundary from './ErrorBoundary'
 import Lang from './Lang'
 
 import { loadLocale, getLang } from './services/lang'
@@ -49,7 +49,7 @@ export default async () => {
     {
       path: "/",
       element: <Layout layout={layout} />,
-      errorElement: <NotFound />,
+      errorElement: <ErrorBoundary />,
       children: [
         {
           path: '/',
