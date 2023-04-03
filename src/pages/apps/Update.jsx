@@ -1,11 +1,12 @@
 
 import {
+  PageContainer,
   ProCard,
   ProForm,
   ProFormText,
 } from '@ant-design/pro-components'
 
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, Link } from 'react-router-dom'
 import { Button, message } from 'antd'
 
 import * as api from './api'
@@ -14,10 +15,6 @@ export default () => {
 
   const { id } = useParams()
   const navigate = useNavigate()
-
-  const handleBack = async () => {
-    navigate('/apps')
-  }
 
   const onFinish = async (data) => {
     await api.update(id, data)
@@ -31,15 +28,22 @@ export default () => {
   }
 
   return (
-    <ProCard
-      title='更新'
-      extra={[
-        <Button key="back" onClick={() => handleBack()}>
-          返回  
-        </Button>,
-      ]}
-      headerBordered
+    <PageContainer
+      header={{
+        title: 'Apps',
+        breadcrumb: {
+          items: [
+            {
+              title: <Link to='/apps'>Apps</Link>,
+            },
+            {
+              title: '编辑',
+            }
+          ],
+        },
+      }}
     >
+    <ProCard>
       <ProForm
         onFinish={onFinish}
         request={request}
@@ -56,5 +60,6 @@ export default () => {
         />
       </ProForm>
     </ProCard>
+    </PageContainer>
   )
 }

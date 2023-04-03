@@ -1,6 +1,6 @@
 
 import { PlusOutlined } from '@ant-design/icons'
-import { ProCard, ProTable } from '@ant-design/pro-components'
+import { PageContainer, ProCard, ProTable } from '@ant-design/pro-components'
 import { Button, message } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import { useRef } from 'react'
@@ -45,7 +45,7 @@ export default () => {
       dataIndex: 'id',
       valueType: 'option',
       render: (text, row) => [
-        <Button key='read' type='link' onClick={() => handleRead(row.id)}>查看</Button>,
+        <Button key='read' type='link' onClick={() => handleRead(row.id)}>详情</Button>,
         <Button key='update' type='link' onClick={() => handleUpdate(row.id)}>编辑</Button>,
         <Delete key='delete' rowId={row.id} onDeleted={handleDeleted}>删除</Delete>
       ],
@@ -58,6 +58,18 @@ export default () => {
   }
 
   return (
+    <PageContainer
+      header={{
+        title: 'Apps',
+        breadcrumb: {
+          items: [
+            {
+              title: 'Apps',
+            }
+          ],
+        },
+      }}
+    >
     <ProCard>
       <ProTable
         actionRef={ref}
@@ -72,5 +84,6 @@ export default () => {
         ]}
       />
     </ProCard>
+    </PageContainer>
   )
 }
