@@ -52,8 +52,8 @@ export default () => {
     },
   ]
 
-  const request = async (params) => {
-    const msg = await api.search(params)
+  const request = async (params, sort, filter) => {
+    const msg = await api.search(params, sort, filter)
     return msg 
   }
 

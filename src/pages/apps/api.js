@@ -55,7 +55,7 @@ export const search = async ({
   current = 1,
   pageSize = 20,
   ...query
-}) => {
+}, sort, filter) => {
   await delay()
 
   const { title } = query
