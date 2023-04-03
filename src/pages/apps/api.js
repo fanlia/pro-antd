@@ -1,6 +1,4 @@
 
-import axios from 'axios'
-
 const delay = (wait = 500) => new Promise(resolve => setTimeout(resolve, wait))
 
 let db = new Array(30).fill(null).map((d, i) => ({
@@ -9,6 +7,7 @@ let db = new Array(30).fill(null).map((d, i) => ({
 }))
 
 export const create = async (data) => {
+  await delay()
 
   const row = {
     ...data,
@@ -26,6 +25,7 @@ export const create = async (data) => {
 }
 
 export const remove = async (id) => {
+  await delay()
 
   const row = db.find(d => d.id === id)
   db = db.filter(d => d.id !== id)
@@ -39,6 +39,8 @@ export const remove = async (id) => {
 }
 
 export const read = async (id) => {
+  await delay()
+
   const row = db.find(d => d.id === id)
 
   const msg = {
@@ -54,7 +56,6 @@ export const search = async ({
   pageSize = 20,
   ...query
 }) => {
-
   await delay()
 
   const { title } = query
@@ -83,6 +84,8 @@ export const search = async ({
 }
 
 export const update = async (id, data) => {
+  await delay()
+
   db = db.map(d => d.id === id ? {...d, ...data, id} : d)
   const row = db.find(d => d.id === id)
 
