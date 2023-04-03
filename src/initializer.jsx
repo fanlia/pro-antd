@@ -29,6 +29,10 @@ export default async () => {
           path: '/test',
         },
         {
+          name: 'CRUD',
+          path: '/apps',
+        },
+        {
           name: 'Baidu',
           path: 'http://www.baidu.com',
         },
@@ -40,6 +44,8 @@ export default async () => {
       ]
     }
   }
+
+  const { default: apps } = await import('./pages/apps/Index')
 
   const routes = [
     {
@@ -63,6 +69,7 @@ export default async () => {
           path: '/test',
           element: <Lazy component='pages/Test' />,
         },
+        ...apps,
       ],
     },
   ]

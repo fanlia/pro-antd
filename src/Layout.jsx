@@ -1,5 +1,5 @@
 
-import { ProLayout, PageContainer } from '@ant-design/pro-components'
+import { ProLayout } from '@ant-design/pro-components'
 import { Outlet, useLocation, useNavigate, Link, Navigate } from 'react-router-dom'
 
 import {
@@ -27,7 +27,6 @@ export default function Layout (props) {
 
   const {
     layout = {},
-    container = {},
   } = props
 
   const user = auth.auth.getUser()
@@ -71,9 +70,7 @@ export default function Layout (props) {
       }}
       { ...layout }
     >
-      <PageContainer { ...container }>
-        <Outlet />
-      </PageContainer>
+      <Outlet />
     </ProLayout>
   )
 }
