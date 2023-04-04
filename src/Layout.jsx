@@ -11,6 +11,7 @@ import { Dropdown } from 'antd'
 
 import Loading from './Loading'
 import { useAuth } from './services/login'
+import { title, logo } from './constants/index'
 
 export default function Layout (props) {
 
@@ -40,6 +41,8 @@ export default function Layout (props) {
 
   return (
     auth.status === 'checked' && <ProLayout
+      logo={ logo }
+      title={ title }
       location = { location }
       menuItemRender = {(item, dom) => (
         item.path.startsWith('http')
