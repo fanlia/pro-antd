@@ -1,6 +1,5 @@
 
 import Layout from './Layout'
-import Lazy from './Lazy'
 import ErrorBoundary from './ErrorBoundary'
 import Lang from './Lang'
 
@@ -48,7 +47,7 @@ export default async () => {
   const routes = [
     {
       path: "/login",
-      element: <Lazy component='pages/Login' />,
+      element: 'pages/Login',
     },
     {
       path: "/",
@@ -57,31 +56,31 @@ export default async () => {
       children: [
         {
           path: '/',
-          element: <Lazy component='pages/Home' />,
+          element: 'pages/Home',
         },
         {
           path: '/about',
-          element: <Lazy component='pages/About' />,
+          element: 'pages/About',
         },
         {
           path: '/test',
-          element: <Lazy component='pages/Test' />,
+          element: 'pages/Test',
         },
         {
           path: '/apps/create',
-          element: <Lazy component='pages/apps/Create' />,
+          element: 'pages/apps/Create',
         },
         {
           path: '/apps/read/:id',
-          element: <Lazy component='pages/apps/Read' />,
+          element: 'pages/apps/Read',
         },
         {
           path: '/apps/update/:id',
-          element: <Lazy component='pages/apps/Update' />,
+          element: 'pages/apps/Update',
         },
         {
           path: '/apps',
-          element: <Lazy component='pages/apps/Search' />,
+          element: 'pages/apps/Search',
         },
       ],
     },
