@@ -6,12 +6,14 @@ let db = new Array(30).fill(null).map((d, i) => ({
   title: `title ${i}`,
 }))
 
+let id = db.length
+
 export const create = async (data) => {
   await delay()
 
   const row = {
     ...data,
-    id: `${db.length}`,
+    id: `${id++}`,
   }
 
   db.push(row)
