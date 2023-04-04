@@ -7,12 +7,13 @@ import {
 } from '@ant-design/pro-components'
 
 import { useNavigate, Link } from 'react-router-dom'
-import { Button, message } from 'antd'
+import { Button, App } from 'antd'
 import * as api from './api'
 
 export default () => {
 
   const navigate = useNavigate()
+  const { message } = App.useApp()
 
   const handleBack = async () => {
     navigate('/apps')

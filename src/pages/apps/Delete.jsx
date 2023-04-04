@@ -1,10 +1,12 @@
 
 import Popconfirm from '../../components/Popconfirm'
-import { Button, message } from 'antd'
+import { Button, App } from 'antd'
 
 import * as api from './api'
 
 export default ({ rowId, onDeleted }) => {
+
+  const { message } = App.useApp()
 
   const onConfirm = async () => {
     await api.remove(rowId)

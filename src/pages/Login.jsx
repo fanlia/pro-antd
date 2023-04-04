@@ -15,7 +15,7 @@ import {
   ProConfigProvider,
 } from '@ant-design/pro-components'
 
-import { message, Space, Tabs } from 'antd'
+import { App, Space, Tabs } from 'antd'
 import { useState } from 'react'
 import { useLocation, useNavigate, Navigate } from 'react-router-dom'
 import Loading from '../Loading'
@@ -31,10 +31,10 @@ const iconStyles = {
 import { useAuth } from '../services/login'
 
 export default () => {
-  const [messageApi, contextHolder] = message.useMessage()
   const [loginType, setLoginType] = useState('account')
   const location = useLocation()
   const navigate = useNavigate()
+  const { message } = App.useApp()
   const auth = useAuth()
 
   if (auth.status === 'checking') return <Loading />
@@ -47,7 +47,7 @@ export default () => {
       const to = new URLSearchParams(location.search).get('redirect') || '/'
       navigate(to)
     } catch (e) {
-      messageApi.warning('登录失败，请重新输入！')
+      message.warning('登录失败，请重新输入！')
     }
   }
 
@@ -134,7 +134,7 @@ export default () => {
               },
             ]}
             onGetCaptcha={async () => {
-              messageApi.success('获取验证码成功！验证码为：1234')
+              message.success('获取验证码成功！验证码为：1234')
             }}
           />
         </>
@@ -144,7 +144,6 @@ export default () => {
   return (
     auth.status === 'unchecked' && <ProConfigProvider hashed={false}>
       <div style={{ backgroundColor: 'white' }}>
-        {contextHolder}
         <LoginForm
           logo="https://github.githubassets.com/images/modules/logos_page/Octocat.png"
           title="Github"

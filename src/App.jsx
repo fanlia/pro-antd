@@ -4,7 +4,7 @@ import {
   RouterProvider,
 } from "react-router-dom"
 
-import { ConfigProvider } from 'antd'
+import { ConfigProvider, App } from 'antd'
 import { useInitialValues } from './services/initialValues'
 import initializer from './initializer'
 import Loading from './Loading'
@@ -21,7 +21,9 @@ export default () => {
 
   return (
     <ConfigProvider locale={locale}>
+      <App>
       <RouterProvider router={router} />
+      </App>
     </ConfigProvider>
   )
 }
