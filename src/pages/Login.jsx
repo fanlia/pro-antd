@@ -18,6 +18,7 @@ import { App, Space, Tabs } from 'antd'
 import { useState } from 'react'
 import { useLocation, useNavigate, Navigate } from 'react-router-dom'
 import Loading from '../Loading'
+import { title, logo, subTitle } from '../constants/index'
 
 const iconStyles = {
   marginInlineStart: '16px',
@@ -144,9 +145,9 @@ export default () => {
     auth.status === 'unchecked' &&
       <div style={{ backgroundColor: 'white' }}>
         <LoginForm
-          logo="https://github.githubassets.com/images/modules/logos_page/Octocat.png"
-          title="Github"
-          subTitle="全球最大的代码托管平台"
+          logo={logo}
+          title={title}
+          subTitle={subTitle}
           actions={
             <Space>
               其他登录方式

@@ -4,6 +4,7 @@ import Lazy from './Lazy'
 import ErrorBoundary from './ErrorBoundary'
 import Lang from './Lang'
 
+import { title, logo } from './constants/index'
 import { loadLocale, getLang } from './services/lang'
 
 export default async () => {
@@ -13,6 +14,8 @@ export default async () => {
   const locale = loadLocale(lang)
 
   const layout = {
+    logo,
+    title,
     layout: 'mix',
     route: {
       routes: [
