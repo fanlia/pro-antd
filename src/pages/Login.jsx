@@ -31,7 +31,7 @@ const iconStyles = {
 import { useAuth } from '../services/login'
 
 export default () => {
-
+  const [messageApi, contextHolder] = message.useMessage()
   const [loginType, setLoginType] = useState('account')
   const location = useLocation()
   const navigate = useNavigate()
@@ -47,7 +47,7 @@ export default () => {
       const to = new URLSearchParams(location.search).get('redirect') || '/'
       navigate(to)
     } catch (e) {
-      message.warning('登录失败，请重新输入！')
+      messageApi.warning('登录失败，请重新输入！')
     }
   }
 
@@ -134,7 +134,7 @@ export default () => {
               },
             ]}
             onGetCaptcha={async () => {
-              message.success('获取验证码成功！验证码为：1234')
+              messageApi.success('获取验证码成功！验证码为：1234')
             }}
           />
         </>
@@ -144,6 +144,7 @@ export default () => {
   return (
     auth.status === 'unchecked' && <ProConfigProvider hashed={false}>
       <div style={{ backgroundColor: 'white' }}>
+        {contextHolder}
         <LoginForm
           logo="https://github.githubassets.com/images/modules/logos_page/Octocat.png"
           title="Github"
