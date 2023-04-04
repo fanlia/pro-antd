@@ -12,7 +12,6 @@ import {
   ProFormCaptcha,
   ProFormCheckbox,
   ProFormText,
-  ProConfigProvider,
 } from '@ant-design/pro-components'
 
 import { App, Space, Tabs } from 'antd'
@@ -142,7 +141,7 @@ export default () => {
     },
   ]
   return (
-    auth.status === 'unchecked' && <ProConfigProvider hashed={false}>
+    auth.status === 'unchecked' &&
       <div style={{ backgroundColor: 'white' }}>
         <LoginForm
           logo="https://github.githubassets.com/images/modules/logos_page/Octocat.png"
@@ -185,7 +184,6 @@ export default () => {
           </div>
         </LoginForm>
       </div>
-    </ProConfigProvider>
   )
 }
 
