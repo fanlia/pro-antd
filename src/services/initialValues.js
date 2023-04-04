@@ -12,8 +12,8 @@ export const useInitialValues = (initializer) => {
       setStatus('loaded')
     })
     .catch(e => {
-      console.error(e)
       setStatus('error')
+      throw e
     })
   }, [])
 
